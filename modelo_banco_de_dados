@@ -1,0 +1,63 @@
+create database modelo;
+
+drop database modelo;
+
+use modelo;
+
+create table vendedor(
+nome varchar(30),
+sobrenome varchar(30),
+email varchar(50),
+telefone varchar(11),
+senha varchar(100),
+cpf varchar(11) primary key
+);
+
+create table imovel(
+id_imovel int primary key auto_increment,
+cpf_vendedor varchar(11),
+tipo varchar(30),
+endereco varchar(50),
+area float,
+dormitorios integer,
+banheiros integer,
+vagas integer,
+valor float,
+foreign key (cpf_vendedor) references vendedor(cpf) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+create table carro(
+id_carro int primary key auto_increment,
+cpf_vendedor varchar(11),
+marca varchar(30),
+modelo varchar(30),
+cor varchar(30),
+ano int,
+valor float,
+foreign key (cpf_vendedor) references vendedor(cpf) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+create table moto(
+id_moto int primary key auto_increment,
+cpf_vendedor varchar(11),
+marca varchar(30),
+modelo varchar(30),
+cilindradas int,
+cor varchar(30),
+ano int,
+valor float,
+foreign key (cpf_vendedor) references vendedor(cpf) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+
+select * from vendedor;
+select * from carro;
+select * from moto;
+select * from imovel;
+
+drop table imovel;
+drop table moto;
+DROP TABLE carro;
+drop table vendedor;
+
+UPDATE vendedor set cpf='12345678910' where cpf='03344455567';
